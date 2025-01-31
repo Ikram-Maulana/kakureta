@@ -4,10 +4,16 @@ Kakureta is a simple and lightweight API to solve Umami Analytics issue with Ant
 
 ## Usage
 
-1. Fork and clone this repository
-2. Install dependencies with `bun install`
-3. Add your Umami URL to the `.env` file
-4. You can change the `scriptName` in `index.ts` with your desired value
+1. **Fork and Clone**: Fork this repository and clone it to your local machine.
+2. **Install Dependencies**: Run `bun install` to install all necessary dependencies.
+3. **Configure Environment**: Add your Umami URL to the `.env` file:
+
+   ```bash
+   UMAMI_URL="your-umami-url"
+   ```
+
+4. **Customize Script Name**: If desired, change the `scriptName` variable in `api/index.ts` to your preferred value.
+5. **Update Vercel Configuration**: If you changed the `scriptName`, update the `rewrites` section in `vercel.json` to match the new script name.
 
 ## Deploy from Vercel
 
