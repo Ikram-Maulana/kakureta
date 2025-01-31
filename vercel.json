@@ -4,5 +4,13 @@
       "source": "/api/(.*)",
       "destination": "/api"
     }
+  ],
+  "redirects": [
+    { "source": "/", "destination": "/api", "permanent": false },
+    {
+      "source": "/kakureta",
+      "destination": "/api/kakureta",
+      "permanent": false
+    }
   ]
 }
