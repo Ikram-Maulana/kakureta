@@ -1,0 +1,13 @@
+{
+  "name": "kakureta",
+  "scripts": {
+    "start": "vercel dev",
+    "deploy": "vercel"
+  },
+  "dependencies": {
+    "hono": "^4.6.19"
+  },
+  "devDependencies": {
+    "vercel": "^39.4.2"
+  }
+}
