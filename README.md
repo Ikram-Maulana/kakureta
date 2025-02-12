@@ -41,6 +41,7 @@ import Script from 'next/script'
   defer
   src="/yourScriptName.js"
   data-website-id="your-website-id"
+  data-host-url="your-deployment-url"
 />
 ...rest of the code
 ```
@@ -60,6 +61,19 @@ After that, you can modify the next.config.js to add the following code:
   crossOrigin: "anonymous",
   skipTrailingSlashRedirect: true,
 ..rest of the code
+```
+
+Or you can use the following code to add the script to your project:
+
+```typescript
+...rest of the code
+<script
+  defer
+  src="https://your-deployment-url/yourScriptName"
+  data-website-id="your-website-id"
+  data-host-url="your-deployment-url"
+/>
+...rest of the code
 ```
 
 ## Resources

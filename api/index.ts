@@ -1,5 +1,6 @@
 import { Context, Hono } from "hono";
 import { env } from "hono/adapter";
+import { cors } from "hono/cors";
 import { handle } from "hono/vercel";
 import { getScript, postData, welcome } from "./lib";
 
@@ -20,11 +21,12 @@ export const config = {
 
 const app = new Hono<{ Bindings: Bindings }>().basePath("/api");
 const scriptName = "kakureta"; // You can change this to whatever you want
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET,HEAD,POST,OPTIONS",
-  "Access-Control-Max-Age": "86400",
-};
+const corsMiddleware = cors({
+  origin: "*",
+  allowMethods: ["GET", "HEAD", "POST", "OPTIONS"],
+  maxAge: 86400,
+  allowHeaders: ["Content-Type", "Allow"],
+});
 
 app.use(async (c, next) => {
   const { UMAMI_URL } = env(c);
@@ -37,13 +39,13 @@ app.get("/", (c: Context) => {
   return welcome(c);
 });
 
-app
-  .get(scriptName, (c: Context) => {
-    return getScript(c, corsHeaders);
-  })
-  .post((c: Context) => {
-    return postData(c, corsHeaders);
-  });
+app.use(corsMiddleware).get(scriptName, (c: Context) => {
+  return getScript(c);
+});
+
+app.use(corsMiddleware).post(scriptName, (c: Context) => {
+  return postData(c);
+});
 
 const handler = handle(app);
 
