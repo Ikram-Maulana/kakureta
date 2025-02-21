@@ -25,7 +25,7 @@ const corsMiddleware = cors({
   origin: "*",
   allowMethods: ["GET", "HEAD", "POST", "OPTIONS"],
   maxAge: 86400,
-  allowHeaders: ["Content-Type", "Allow"],
+  allowHeaders: ["Content-Type", "Allow", "x-umami-cache"],
 });
 
 app.use(async (c, next) => {
